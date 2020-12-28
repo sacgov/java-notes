@@ -1,6 +1,7 @@
 package guicenotes;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 /**
  * Here SquareRequest is a dependant on DrawSquare for its implementation
@@ -28,7 +29,7 @@ class SquareRequestV1 {
   }
 }
 
-class SquareRequestSubClass extends SquareRequest{
+class SquareRequestSubClass extends SquareRequest {
 
   @Inject
   SquareRequestSubClass(DrawShape drawShape) {
@@ -58,7 +59,6 @@ class SquareRequestMethodInjection {
 }
 
 class SquareRequestFieldInjection {
-
   @Inject
   DrawShape d;
 
@@ -66,7 +66,22 @@ class SquareRequestFieldInjection {
     System.out.println("This is from a sub class");
     d.draw();
   }
+}
 
+class SquareRequestNamedInjection{
+  @Inject
+  @Named("circle")
+  DrawShape d;
+
+  /**
+   * The disadvantage is we need the strings to exactly match something like
+   * annotatedWith(Names.named("circle))
+   */
+
+  void makeRequest() {
+    System.out.println("This is from a sub class");
+    d.draw();
+  }
 }
 
 public class SquareRequest {

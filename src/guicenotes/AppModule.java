@@ -1,6 +1,8 @@
 package guicenotes;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
 import guicenotes.annotations.ColorValue;
 import guicenotes.annotations.EdgesValue;
 
@@ -23,5 +25,22 @@ public class AppModule extends AbstractModule {
     bind(DrawShape.class).to(EnhancedDrawSquare.class);
     bind(String.class).annotatedWith(ColorValue.class).toInstance("Square");
     bind(Integer.class).annotatedWith(EdgesValue.class).toInstance(40);
+
   }
+
+  /**
+   * Sometimes we have an object in a jar that is from external source
+   * Then we need a provider since we can no longer inject ColorValue/ EdgesValue
+   * See the example before
+   */
+//  @Provides
+//  @Singleton
+//  DrawShape providesDrawSquare() {
+//    return new EnhancedDrawSquare("ref", 2);
+//  }
+  /**
+   * Add parameters and inject in the above provider as well
+   * Also since this logic keeps getting bigger - we can write a provider class
+   * bind.toProvider
+   */
 }
