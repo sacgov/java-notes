@@ -11,7 +11,7 @@ public class DrawSquareProvider implements Provider<EnhancedDrawSquare> {
   // we can inject here as well
   public DrawSquareProvider(String color,Integer edges) {
     this.color = color;
-    this.edges = edges
+    this.edges = edges;
 
   }
   @Override
